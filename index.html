@@ -38,7 +38,7 @@
 							</div>
 							<div class="form-group">
 								<label for="geraisMedia">Média</label> <input type="number"
-									class="form-control" id="geraisMedia" />
+									class="form-control" id="geraisMedia" pattern="^\\$?(([1-9](\\d*|\\d{0,2}(,\\d{3})*))|0)(\\.\\d{1,2})?$" />
 							</div>
 							<div class="form-group">
 								<label for="geraisDesvio">Desvio Padrão</label> <input
@@ -71,16 +71,20 @@
 					</div>
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Seus Acertos</h3>
+							<h3 class="panel-title">Sua Nota</h3>
 						</div>
 						<div class="panel-body">
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="acertoGer">Gerais</label> <input type="number"
 									class="form-control" id="acertoGer" />
-							</div>
-							<div class="form-group">
+							</div> -->
+							<!-- <div class="form-group">
 								<label for="acertoEsp">Específicas</label> <input type="number"
 									class="form-control" id="acertoEsp" />
+							</div> -->
+							<div class="form-group">
+								<label for="acertoGer">Nota</label> <input type="number"
+									class="form-control" id="nota" />
 							</div>
 						</div>
 					</div>
