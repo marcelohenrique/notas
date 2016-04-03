@@ -1,24 +1,24 @@
 function calcular() {
-	var geraisQuestoes = $('#geraisQuestoes').val();
-	var geraisPeso = $('#geraisPeso').val();
-	var geraisMedia = $('#geraisMedia').val();
-	var geraisDesvio = $('#geraisDesvio').val();
-	geraisQuestoes = 20;
-	geraisPeso = 1;
-	geraisMedia = 13.01;
-	geraisDesvio = 3.52;
+	var geraisQuestoes = parseInt($('#geraisQuestoes').val());
+	var geraisPeso = parseInt($('#geraisPeso').val());
+	var geraisMedia = parseFloat($('#geraisMedia').val());
+	var geraisDesvio = parseFloat($('#geraisDesvio').val());
+	// geraisQuestoes = 20;
+	// geraisPeso = 1;
+	// geraisMedia = 13.01;
+	// geraisDesvio = 3.52;
 
-	var espQuestoes = $('#espQuestoes').val();
-	var espPeso = $('#espPeso').val();
-	var espMedia = $('#espMedia').val();
-	var espDesvio = $('#espDesvio').val();
-	espQuestoes = 40;
-	espPeso = 3;
-	espMedia = 18.77;
-	espDesvio = 5.42;
+	var espQuestoes = parseInt($('#espQuestoes').val());
+	var espPeso = parseInt($('#espPeso').val());
+	var espMedia = parseFloat($('#espMedia').val());
+	var espDesvio = parseFloat($('#espDesvio').val());
+	// espQuestoes = 40;
+	// espPeso = 3;
+	// espMedia = 18.77;
+	// espDesvio = 5.42;
 
-	var notaCorte = $('#notaCorte').val();
-	notaCorte = 200;
+	var notaCorte = parseInt($('#notaCorte').val());
+	// notaCorte = 200;
 
 	// var acertoGer = $( '#acertoGer' ).val();
 	// var acertoEsp = $( '#acertoEsp' ).val();
@@ -90,8 +90,8 @@ function calcular() {
 		linha.append(coluna(notaGerada.questaoGeral)); // Acertos Gerais
 		linha.append(coluna(notaGerada.questaoEspecifica)); // Acertos
 		// Específica
-		linha.append(coluna(notaGerada.questaoGeral
-				+ notaGerada.questaoEspecifica)); // Acertos
+		linha.append(coluna((1 * notaGerada.questaoGeral)
+				+ (1 * notaGerada.questaoEspecifica))); // Acertos
 		// Total
 		linha.append(coluna(notaGerada.questaoGeral * geraisPeso)); // Pontos
 		// Gerais
