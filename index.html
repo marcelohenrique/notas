@@ -38,7 +38,8 @@
 							</div>
 							<div class="form-group">
 								<label for="geraisMedia">Média</label> <input type="number"
-									class="form-control" id="geraisMedia" pattern="^\\$?(([1-9](\\d*|\\d{0,2}(,\\d{3})*))|0)(\\.\\d{1,2})?$" />
+									class="form-control" id="geraisMedia"
+									pattern="^\\$?(([1-9](\\d*|\\d{0,2}(,\\d{3})*))|0)(\\.\\d{1,2})?$" />
 							</div>
 							<div class="form-group">
 								<label for="geraisDesvio">Desvio Padrão</label> <input
@@ -71,21 +72,24 @@
 					</div>
 					<div class="panel panel-primary">
 						<div class="panel-heading">
+							<h3 class="panel-title">Informações Adicionais</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label for="notaCorte">Nota de Corte</label> <input
+									type="number" class="form-control" id="notaCorte" />
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
 							<h3 class="panel-title">Sua Nota</h3>
 						</div>
 						<div class="panel-body">
 							<!-- <div class="form-group">
-								<label for="acertoGer">Gerais</label> <input type="number"
-									class="form-control" id="acertoGer" />
-							</div> -->
-							<!-- <div class="form-group">
-								<label for="acertoEsp">Específicas</label> <input type="number"
-									class="form-control" id="acertoEsp" />
-							</div> -->
-							<div class="form-group">
-								<label for="acertoGer">Nota</label> <input type="number"
-									class="form-control" id="nota" />
-							</div>
+								<label for="notas">Nota</label> -->
+								<textarea class="form-control" rows="3" id="notas"></textarea>
+							<!-- </div> -->
 						</div>
 					</div>
 					<button type="button" class="btn btn-default" onclick="calcular()">Calcular</button>
@@ -112,7 +116,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<!-- <tr>
 							<td>#</td>
 							<td>Acertos Gerais</td>
 							<td>Acertos Específica</td>
@@ -123,8 +127,8 @@
 							<td>Nota Gerais</td>
 							<td>Nota Específicas</td>
 							<td>Nota Total</td>
-						</tr>
-						<tr>
+						</tr> -->
+						<!-- <tr>
 							<td>#</td>
 							<td>Acertos Gerais</td>
 							<td>Acertos Específica</td>
@@ -135,7 +139,7 @@
 							<td>Nota Gerais</td>
 							<td>Nota Específicas</td>
 							<td>Nota Total</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 				<!-- </div> -->
@@ -148,6 +152,7 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="notas.js"></script>
+	<script src="Nota.js"></script>
+	<script src="index.js"></script>
 </body>
 </html>
