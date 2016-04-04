@@ -71,10 +71,10 @@ function calcular() {
 							notasConcurso[cont]).toFixed(2))) {
 				cont++;
 				mais = true;
-				console.log(cont + ' - '
-						+ parseFloat(notasGeradas[i + 1].notaTotal).toFixed(2)
-						+ ' - '
-						+ parseFloat(notasConcurso[cont - 1]).toFixed(2));
+				// console.log(cont + ' - '
+				// + parseFloat(notasGeradas[i + 1].notaTotal).toFixed(2)
+				// + ' - '
+				// + parseFloat(notasConcurso[cont - 1]).toFixed(2));
 			}
 			if (mais) {
 				classificacao += ' - ' + cont;
@@ -108,6 +108,17 @@ function calcular() {
 		// Total
 
 		$('#resultado > tbody:last-child').append(linha);
+	}
+	mostrar();
+}
+
+function mostrar() {
+	var mostrarTudo = $('#mostrarTudo:checked').val() == undefined ? false
+			: true;
+	if (mostrarTudo) {
+		$('#resultado > tbody > tr[class!=success]').show();
+	} else {
+		$('#resultado > tbody > tr[class!=success]').hide();
 	}
 }
 
