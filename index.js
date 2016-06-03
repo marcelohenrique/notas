@@ -3,29 +3,33 @@ function calcular() {
    var geraisPeso = parseInt( $( '#geraisPeso' ).val() );
    var geraisMedia = parseFloat( $( '#geraisMedia' ).val() );
    var geraisDesvio = parseFloat( $( '#geraisDesvio' ).val() );
-   // geraisQuestoes = 30;
-   // geraisPeso = 1;
-   // geraisMedia = 15.94;
-   // geraisDesvio = 4.48;
 
    var espQuestoes = parseInt( $( '#espQuestoes' ).val() );
    var espPeso = parseInt( $( '#espPeso' ).val() );
    var espMedia = parseFloat( $( '#espMedia' ).val() );
    var espDesvio = parseFloat( $( '#espDesvio' ).val() );
+
+   var notaCorte = parseInt( $( '#notaCorte' ).val() );
+
+   // geraisQuestoes = 30;
+   // geraisPeso = 1;
+   // geraisMedia = 15.94;
+   // geraisDesvio = 4.48;
+
    // espQuestoes = 50;
    // espPeso = 2;
    // espMedia = 19.33;
    // espDesvio = 6.55;
 
-   var notaCorte = parseInt( $( '#notaCorte' ).val() );
    // notaCorte = 180;
 
-   // var acertoGer = $( '#acertoGer' ).val();
-   // var acertoEsp = $( '#acertoEsp' ).val();
-   var notasConcurso = $( '#notas' ).val().split( '\n' );
-   // var acertoGerIndividual = $('#acertoGerIndividual');
-   // var acertoEspIndividual = $('#acertoEspIndividual');
-   // notaIndividual = 309.55;
+   var notasConcurso = [];
+   $( '#notas' ).val().split( '\n' ).forEach( function( e, i ) {
+      notasConcurso.push( parseFloat( e ).toFixed( 2 ) );
+   } );
+   notasConcurso.sort( function( a, b ) {
+      return b - a;
+   } );
    // notasConcurso =
    // '236.38\n228.65\n224.18\n219.49\n208.10\n206.90\n207.50\n206.67'
    // .split( '\n' );
@@ -40,11 +44,6 @@ function calcular() {
          notasGeradas.push( new Nota( i, geraisPeso, geraisMedia, geraisDesvio,
                j, espPeso, espMedia, espDesvio ) );
 
-         // notaGerais = nota(geraisMedia, geraisDesvio, i, geraisPeso);
-         // notaEsp = nota(espMedia, espDesvio, j, espPeso);
-         // notaTotal = (parseFloat(notaGerais) + parseFloat(notaEsp))
-         // .toFixed(2);
-
       }
    }
 
@@ -56,17 +55,13 @@ function calcular() {
    var cont = 0;
    for ( i = 0; i < notasGeradas.length; i++ ) {
       var notaGerada = notasGeradas[ i ];
-      // if (nota.notaTotal == notaIndividual) {
-      // acertoGerIndividual.val(i);
-      // acertoEspIndividual.val(j);
-      // }
 
       var linha = $( '<tr>' );
-      // linha = $('#resultado > tr:last-child')
       // #
-      if ( ( cont < notasConcurso.length )
+      var notaSelecionada = ( cont < notasConcurso.length )
             && ( notaMaisProxima( parseFloat( notasConcurso[ cont ] ).toFixed(
-                  2 ), notasGeradas, i ) ) ) {
+                  2 ), notasGeradas, i ) );
+      if ( notaSelecionada ) {
 
          var classificacao = '' + ++cont;
          var mais = false;
@@ -88,28 +83,38 @@ function calcular() {
       } else {
          linha.append( coluna( '' ) );
       }
+
+      // Acertos Gerais
+      linha.append( coluna( notaGerada.questaoGeral ) );
+      // Acertos Específica
+      linha.append( coluna( notaGerada.questaoEspecifica ) );
+      // Acertos Total
+      linha.append( coluna( ( 1 * notaGerada.questaoGeral )
+            + ( 1 * notaGerada.questaoEspecifica ) ) );
+      // Pontos Gerais
+      linha.append( coluna( notaGerada.questaoGeral * geraisPeso ) );
+      // Pontos Específica
+      linha.append( coluna( notaGerada.questaoEspecifica * espPeso ) );
+      // Pontos Total
+      linha.append( coluna( ( notaGerada.questaoGeral * geraisPeso )
+            + ( notaGerada.questaoEspecifica * espPeso ) ) );
+      // Nota Gerais
+      linha.append( coluna( notaGerada.notaGeral ) );
+      // Nota Específicas
+      linha.append( coluna( notaGerada.notaEspecifica ) );
+      // Nota Total
+      linha.append( coluna( notaGerada.notaTotal ) );
+      // Nota Cand.
+      if ( notaSelecionada ) {
+         linha.append( coluna( parseFloat( notasConcurso[ cont - 1 ] ).toFixed(
+               2 ) ) );
+      } else {
+         linha.append( coluna( '' ) );
+      }
+
       if ( notaGerada.notaTotal < notaCorte ) {
          linha.addClass( 'danger' );
       }
-      linha.append( coluna( notaGerada.questaoGeral ) ); // Acertos Gerais
-      linha.append( coluna( notaGerada.questaoEspecifica ) ); // Acertos
-      // Específica
-      linha.append( coluna( ( 1 * notaGerada.questaoGeral )
-            + ( 1 * notaGerada.questaoEspecifica ) ) ); // Acertos
-      // Total
-      linha.append( coluna( notaGerada.questaoGeral * geraisPeso ) ); // Pontos
-      // Gerais
-      linha.append( coluna( notaGerada.questaoEspecifica * espPeso ) ); // Pontos
-      // Específica
-      linha.append( coluna( ( notaGerada.questaoGeral * geraisPeso )
-            + ( notaGerada.questaoEspecifica * espPeso ) ) ); // Pontos
-      // Total
-      linha.append( coluna( notaGerada.notaGeral ) ); // Nota
-      // Gerais
-      linha.append( coluna( notaGerada.notaEspecifica ) ); // Nota
-      // Específicas
-      linha.append( coluna( notaGerada.notaTotal ) ); // Nota
-      // Total
 
       $( '#resultado > tbody:last-child' ).append( linha );
    }
