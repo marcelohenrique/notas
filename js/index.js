@@ -1,3 +1,8 @@
+$( document ).ready( function() {
+   var $table = $( '#resultado' );
+   $table.floatThead();
+} );
+
 function calcular() {
    var geraisQuestoes = parseInt( $( '#geraisQuestoes' ).val() );
    var geraisPeso = parseInt( $( '#geraisPeso' ).val() );
@@ -11,17 +16,17 @@ function calcular() {
 
    var notaCorte = parseInt( $( '#notaCorte' ).val() );
 
-   // geraisQuestoes = 30;
-   // geraisPeso = 1;
-   // geraisMedia = 15.94;
-   // geraisDesvio = 4.48;
+   geraisQuestoes = 30;
+   geraisPeso = 1;
+   geraisMedia = 15.94;
+   geraisDesvio = 4.48;
 
-   // espQuestoes = 50;
-   // espPeso = 2;
-   // espMedia = 19.33;
-   // espDesvio = 6.55;
+   espQuestoes = 50;
+   espPeso = 2;
+   espMedia = 19.33;
+   espDesvio = 6.55;
 
-   // notaCorte = 180;
+   notaCorte = 180;
 
    var notasConcurso = [];
    $( '#notas' ).val().split( '\n' ).forEach( function( e, i ) {
